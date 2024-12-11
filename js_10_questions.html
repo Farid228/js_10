@@ -1,37 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JavaScript Program Demonstration</title>
-</head>
-<body>
-    <button onclick="findTenthChar()">Find 10th Character</button>
-    <button onclick="findLastElement()">Find Last Element</button>
-    <button onclick="allowTenDigits()">Allow 10 Digits</button>
-    <button onclick="findWordsAndRepeatedChars()">Find Words & Repeated Characters</button>
-    <button onclick="countVowels()">Count Vowels</button>
-    <button onclick="findLongestWord()">Find Longest Word</button>
-    <button onclick="toggleCase()">Toggle Case</button>
-    <button onclick="findSubstringLocation()">Find Substring Location</button>
-    <button onclick="spliceDemo()">Demonstrate Splice</button>
-    <button onclick="analyzeString()">Analyze String</button>
 
-    <script>
-        
+function displayMenu() {
+    let menu = `Choose a program to run:\n\n` +
+        `1: Find 10th Character\n` +
+        `2: Find Last Element\n` +
+        `3: Allow 10 Digits\n` +
+        `4: Find Words & Repeated Characters\n` +
+        `5: Count Vowels\n` +
+        `6: Find Longest Word\n` +
+        `7: Toggle Case\n` +
+        `8: Find Substring Location\n` +
+        `9: Demonstrate Splice\n` +
+        `10: Analyze String`;
+
+    let choice = parseInt(prompt(menu));
+
+    switch (choice) {
+        case 1:
+            findTenthChar();
+            break;
+        case 2:
+            findLastElement();
+            break;
+        case 3:
+            allowTenDigits();
+            break;
+        case 4:
+            findWordsAndRepeatedChars();
+            break;
+        case 5:
+            countVowels();
+            break;
+        case 6:
+            findLongestWord();
+            break;
+        case 7:
+            toggleCase();
+            break;
+        case 8:
+            findSubstringLocation();
+            break;
+        case 9:
+            spliceDemo();
+            break;
+        case 10:
+            analyzeString();
+            break;
+        default:
+            alert("Invalid choice. Please try again.");
+            displayMenu();
+    }
+}
+
 function findTenthChar() {
     let userInput = prompt("Enter an array (comma-separated):");
     let arr = userInput.split(",");
     alert(arr[9] || "Less than 10 elements in the array.");
 }
-findTenthChar();
-
 
 function findLastElement() {
     let userInput = prompt("Enter an array (comma-separated):");
     let arr = userInput.split(",");
     alert(arr[arr.length - 1] || "The array is empty.");
-}
-findLastElement();
-
 
 function allowTenDigits() {
     let input = prompt("Enter a 10-digit number:");
@@ -41,7 +70,6 @@ function allowTenDigits() {
         alert("Input must be exactly 10 digits.");
     }
 }
-allowTenDigits();
 
 
 function findWordsAndRepeatedChars() {
@@ -60,7 +88,6 @@ function findWordsAndRepeatedChars() {
     let repeats = Object.entries(repeatedChars).filter(([_, count]) => count > 1);
     alert(`Repeated characters: ${repeats.map(([char, count]) => `${char}: ${count}`).join(", ")}`);
 }
-findWordsAndRepeatedChars();
 
 
 function countVowels() {
@@ -69,7 +96,6 @@ function countVowels() {
     let vowels = arr.match(/[aeiou]/g);
     alert(`Number of vowels: ${vowels ? vowels.length : 0}`);
 }
-countVowels();
 
 
 function findLongestWord() {
@@ -78,8 +104,6 @@ function findLongestWord() {
     let longestWord = words.reduce((longest, word) => word.length > longest.length ? word : longest, "");
     alert(`The longest word is: ${longestWord}`);
 }
-findLongestWord();
-
 
 function toggleCase() {
     let userInput = prompt("Enter a string:");
@@ -92,8 +116,6 @@ function toggleCase() {
     }).join("");
     alert(`Toggled case: ${toggled}`);
 }
-toggleCase();
-
 
 function findSubstringLocation() {
     let userInput = prompt("Enter a string:");
@@ -101,7 +123,6 @@ function findSubstringLocation() {
     let index = userInput.indexOf(substring);
     alert(index !== -1 ? `Substring found at index: ${index}` : "Substring not found.");
 }
-findSubstringLocation();
 
 
 function spliceDemo() {
@@ -125,8 +146,6 @@ function spliceDemo() {
 
     alert(`Updated array: ${arr.join(",")}`);
 }
-spliceDemo();
-
 
 function analyzeString() {
     let userInput = prompt("Enter a string:");
@@ -137,8 +156,6 @@ function analyzeString() {
 
     alert(`Words: ${words}, Characters: ${characters}, Spaces: ${spaces}, Special Symbols: ${specialSymbols}`);
 }
-analyzeString();
 
-    </script>
-</body>
-</html>
+
+displayMenu();

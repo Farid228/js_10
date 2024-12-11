@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Program Demonstration</title>
+</head>
+<body>
+    <button onclick="findTenthChar()">Find 10th Character</button>
+    <button onclick="findLastElement()">Find Last Element</button>
+    <button onclick="allowTenDigits()">Allow 10 Digits</button>
+    <button onclick="findWordsAndRepeatedChars()">Find Words & Repeated Characters</button>
+    <button onclick="countVowels()">Count Vowels</button>
+    <button onclick="findLongestWord()">Find Longest Word</button>
+    <button onclick="toggleCase()">Toggle Case</button>
+    <button onclick="findSubstringLocation()">Find Substring Location</button>
+    <button onclick="spliceDemo()">Demonstrate Splice</button>
+    <button onclick="analyzeString()">Analyze String</button>
+
+    <script>
+        
+function findTenthChar() {
+    let userInput = prompt("Enter an array (comma-separated):");
+    let arr = userInput.split(",");
+    alert(arr[9] || "Less than 10 elements in the array.");
+}
+findTenthChar();
+
+
+function findLastElement() {
+    let userInput = prompt("Enter an array (comma-separated):");
+    let arr = userInput.split(",");
+    alert(arr[arr.length - 1] || "The array is empty.");
+}
+findLastElement();
+
+
+function allowTenDigits() {
+    let input = prompt("Enter a 10-digit number:");
+    if (/^\d{10}$/.test(input)) {
+        alert("Valid input!");
+    } else {
+        alert("Input must be exactly 10 digits.");
+    }
+}
+allowTenDigits();
+
+
+function findWordsAndRepeatedChars() {
+    let userInput = prompt("Enter an array (comma-separated):");
+    let arr = userInput.split(",");
+    let wordToFind = prompt("Enter the word to search for:");
+
+    let wordCount = arr.filter(word => word === wordToFind).length;
+    alert(`The word '${wordToFind}' appears ${wordCount} times.`);
+
+    let repeatedChars = arr.join("").split("").reduce((acc, char) => {
+        acc[char] = (acc[char] || 0) + 1;
+        return acc;
+    }, {});
+
+    let repeats = Object.entries(repeatedChars).filter(([_, count]) => count > 1);
+    alert(`Repeated characters: ${repeats.map(([char, count]) => `${char}: ${count}`).join(", ")}`);
+}
+findWordsAndRepeatedChars();
+
+
+function countVowels() {
+    let userInput = prompt("Enter an array (comma-separated):");
+    let arr = userInput.split(",").join("").toLowerCase();
+    let vowels = arr.match(/[aeiou]/g);
+    alert(`Number of vowels: ${vowels ? vowels.length : 0}`);
+}
+countVowels();
+
+
+function findLongestWord() {
+    let userInput = prompt("Enter a string:");
+    let words = userInput.split(" ");
+    let longestWord = words.reduce((longest, word) => word.length > longest.length ? word : longest, "");
+    alert(`The longest word is: ${longestWord}`);
+}
+findLongestWord();
+
+
+function toggleCase() {
+    let userInput = prompt("Enter a string:");
+    let toggled = userInput.split("").map(char => {
+        if (char === char.toUpperCase()) {
+            return char.toLowerCase();
+        } else {
+            return char.toUpperCase();
+        }
+    }).join("");
+    alert(`Toggled case: ${toggled}`);
+}
+toggleCase();
+
+
+function findSubstringLocation() {
+    let userInput = prompt("Enter a string:");
+    let substring = prompt("Enter the substring to find:");
+    let index = userInput.indexOf(substring);
+    alert(index !== -1 ? `Substring found at index: ${index}` : "Substring not found.");
+}
+findSubstringLocation();
+
+
+function spliceDemo() {
+    let userInput = prompt("Enter an array (comma-separated):");
+    let arr = userInput.split(",");
+    let operation = prompt("Enter operation: delete, insert, replace");
+
+    if (operation === "delete") {
+        let index = parseInt(prompt("Enter index to delete from:"));
+        let count = parseInt(prompt("Enter number of elements to delete:"));
+        arr.splice(index, count);
+    } else if (operation === "insert") {
+        let index = parseInt(prompt("Enter index to insert at:"));
+        let element = prompt("Enter element to insert:");
+        arr.splice(index, 0, element);
+    } else if (operation === "replace") {
+        let index = parseInt(prompt("Enter index to replace:"));
+        let element = prompt("Enter replacement element:");
+        arr.splice(index, 1, element);
+    }
+
+    alert(`Updated array: ${arr.join(",")}`);
+}
+spliceDemo();
+
+
+function analyzeString() {
+    let userInput = prompt("Enter a string:");
+    let words = userInput.trim().split(/\s+/).length;
+    let characters = userInput.length;
+    let spaces = (userInput.match(/ /g) || []).length;
+    let specialSymbols = (userInput.match(/[^a-zA-Z0-9\s]/g) || []).length;
+
+    alert(`Words: ${words}, Characters: ${characters}, Spaces: ${spaces}, Special Symbols: ${specialSymbols}`);
+}
+analyzeString();
+
+    </script>
+</body>
+</html>
